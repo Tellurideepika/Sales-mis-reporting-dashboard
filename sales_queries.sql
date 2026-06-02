@@ -1,11 +1,11 @@
--- ============================================================
--- Sales MIS Reporting Dashboard — SQL Queries
--- Dataset: Superstore Sales (Kaggle)
--- Author: Deepika Telluri
--- ============================================================
--- To use: Import 'Sample - Superstore.csv' into PostgreSQL as
--- table named 'superstore'. Adjust schema/table name as needed.
--- ============================================================
+/*
+============================================================
+Sales Performance & Business Intelligence Dashboard
+Database: PostgreSQL
+Purpose: KPI Reporting, Sales Analysis, Customer Insights,
+Regional Performance Analysis and Executive MIS Reporting
+============================================================
+*/
 
 
 -- ─────────────────────────────────────────────
@@ -228,3 +228,25 @@ SELECT
 FROM superstore
 GROUP BY ship_mode
 ORDER BY avg_days_to_ship;
+
+
+
+-- ─────────────────────────────────────────────
+-- 11. Top Products by Revenue
+-- ─────────────────────────────────────────────
+SELECT
+    product_name,
+    ROUND(SUM(sales),2) AS revenue,
+    ROUND(SUM(profit),2) AS profit
+FROM superstore
+GROUP BY product_name
+ORDER BY revenue DESC
+LIMIT 10;
+Category Contribution %
+SELECT
+    category,
+    ROUND(SUM(sales),2) AS revenue,
+    ROUND(
+        SUM(sales) * 100.0 /
+        SUM(SUM(sales)) OVER (),
+   
