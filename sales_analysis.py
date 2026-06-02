@@ -1,12 +1,3 @@
-# ============================================================
-# Sales MIS Reporting Dashboard - Python Analysis
-# Dataset: Superstore Sales (Kaggle)
-# Author: Deepika Telluri
-# ============================================================
-# Dataset download: https://www.kaggle.com/datasets/vivek468/superstore-dataset-final
-# Download 'Sample - Superstore.csv' and place it in the same folder as this script.
-# ============================================================
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
