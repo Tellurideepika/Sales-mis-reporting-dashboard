@@ -1,110 +1,171 @@
-# 📊 Sales MIS Reporting Dashboard
+# 📊 Sales Performance & Business Intelligence Dashboard
 
-A complete **Management Information System (MIS)** reporting project built on the Superstore Sales dataset using **Python**, **SQL (PostgreSQL)**, and **Power BI**.
-
----
-
-## 🎯 Objective
-
-Design a monthly MIS reporting framework to consolidate sales, revenue, and operational KPIs into an executive-facing dashboard — enabling management to track targets vs actuals, identify regional variance, and drill down by product category.
+An end-to-end Business Intelligence (BI) project built using Power BI, SQL (PostgreSQL), Python, and Excel to analyze sales performance, profitability, customer behavior, and regional trends. The dashboard provides management-level insights through interactive reporting and KPI monitoring.
 
 ---
 
-## 📁 Project Structure
+## 🎯 Business Problem
 
-```
-sales-mis-dashboard/
-│
-├── sales_analysis.py       # Python EDA, KPI computation & 4-panel visualisation
-├── sales_queries.sql       # PostgreSQL queries for all KPI reporting
-├── sales_dashboard.png     # Auto-generated dashboard output (created on run)
-└── README.md
-```
+Organizations often struggle with fragmented sales data, making it difficult to monitor performance, track targets, and identify growth opportunities.
 
-> **Dataset:** [Superstore Sales – Kaggle](https://www.kaggle.com/datasets/vivek468/superstore-dataset-final)  
-> Download `Sample - Superstore.csv` and place it in the project folder before running.
+This project was developed to create a centralized MIS reporting solution that enables stakeholders to:
+
+- Monitor key business KPIs
+- Compare actual performance against targets
+- Identify profitable regions and products
+- Analyze customer purchasing behavior
+- Support data-driven decision making
 
 ---
 
-## 📌 Key KPIs Tracked
+## 📌 Key KPIs
 
 | KPI | Description |
-|-----|-------------|
-| Total Revenue | Sum of all sales |
-| Total Profit | Net profit across orders |
-| Profit Margin % | Profit as % of revenue |
-| Average Order Value | Revenue per unique order |
-| MoM Revenue Growth | Month-over-month variance |
-| Target Achievement % | Actual vs simulated yearly targets |
+|------|-------------|
+| Total Sales | Total revenue generated |
+| Total Profit | Net profit earned |
+| Profit Margin % | Profit as a percentage of sales |
+| Total Orders | Number of orders processed |
+| Average Order Value | Revenue per order |
+| YoY Growth % | Year-over-Year sales growth |
+| Target Achievement % | Actual vs Target performance |
 
 ---
 
-## 🔍 Analysis Performed
+## 📊 Dashboard Features
 
-- **Revenue & Sales Trends** — Monthly revenue and profit line chart across all years
-- **Regional Performance** — Revenue, profit, margin by East / West / Central / South
-- **Product Category Breakdown** — Revenue and margin by Category and Sub-Category
-- **Targets vs Actuals** — Simulated 15% YoY growth target vs actual performance
-- **Top 10 Customers** — By revenue with margin and order count
-- **Discount Impact Analysis** — Effect of discount bands on profit margin
-- **Ship Mode Efficiency** — Average shipping days and revenue per mode
-- **State-level Drill-down** — Top 20 states by revenue
+### Executive Overview
+- KPI Cards
+- Monthly Sales Trend
+- Monthly Profit Trend
+- Sales vs Target Analysis
+
+### Regional Analysis
+- Revenue by Region
+- Profit by Region
+- State-wise Sales Performance
+- Regional Summary Matrix
+
+### Product Analysis
+- Sales by Category
+- Top Products by Revenue
+- Pareto Analysis (80/20 Rule)
+- Sales vs Profit Analysis
+
+### Customer Insights
+- Customer Segmentation
+- Top Customers
+- Repeat Customer Analysis
+- Revenue Contribution Analysis
 
 ---
 
-## ⚙️ How to Run
+## 📈 Power BI Features
 
-### Python Analysis
+- Interactive Slicers & Filters
+- Drill-Through Analysis
+- KPI Cards
+- Dynamic DAX Measures
+- Power Query Transformations
+- Custom Tooltips
+- Bookmark Navigation
+- Responsive Dashboard Design
 
-```bash
-# Install dependencies
-pip install pandas numpy matplotlib
+---
 
-# Run analysis (generates terminal output + dashboard PNG)
-python sales_analysis.py
+## 🧮 Sample DAX Measures
+
+```DAX
+Total Sales =
+SUM(Orders[Sales])
+
+Total Profit =
+SUM(Orders[Profit])
+
+Profit Margin % =
+DIVIDE([Total Profit],[Total Sales])
+
+Average Order Value =
+DIVIDE(
+    [Total Sales],
+    DISTINCTCOUNT(Orders[Order ID])
+)
+
+YoY Growth % =
+VAR PrevYear =
+CALCULATE(
+    [Total Sales],
+    SAMEPERIODLASTYEAR(Date[Date])
+)
+RETURN
+DIVIDE([Total Sales]-PrevYear,PrevYear)
 ```
 
-### SQL Queries (PostgreSQL)
+---
 
-```bash
-# 1. Create the table and import CSV
-psql -U your_user -d your_db -f sales_queries.sql
+## 📸 Dashboard Preview
 
-# 2. Or paste individual queries into DBeaver / pgAdmin / TablePlus
-```
+### Executive Dashboard
+![Executive Dashboard](screenshots/executive_dashboard.png)
+
+### Regional Analysis
+![Regional Analysis](screenshots/regional_analysis.png)
+
+### Product Analysis
+![Product Analysis](screenshots/product_analysis.png)
 
 ---
 
-## 📊 Dashboard Preview
+## 💡 Key Business Insights
 
-![Sales Dashboard](sales_dashboard.png)
-
-> 4-panel dashboard: Monthly Trend · Regional Performance · Category Breakdown · Targets vs Actuals
+- West region contributed the highest share of total sales revenue.
+- Technology category generated the largest revenue contribution.
+- Orders with discounts above 30% consistently resulted in negative profit margins.
+- Same Day shipping showed the highest profitability despite lower order volume.
+- Top 20% of products contributed approximately 80% of total sales revenue.
+- Revenue exceeded annual targets and achieved strong year-over-year growth.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Tool | Usage |
-|------|-------|
-| Python (Pandas, NumPy) | Data cleaning, EDA, KPI computation |
-| Matplotlib | Dashboard visualisation |
-| PostgreSQL | SQL-based KPI queries and aggregation |
-| Power BI | Interactive executive dashboard (DAX + Power Query) |
-| Excel | Pivot tables, data validation |
+| Tool | Purpose |
+|--------|---------|
+| Power BI | Dashboard Development |
+| SQL (PostgreSQL) | Data Extraction & Analysis |
+| Python (Pandas, NumPy) | Data Cleaning & KPI Computation |
+| Power Query | Data Transformation |
+| DAX | Business Calculations |
+| Excel | Data Validation & Reporting |
 
 ---
 
-## 💡 Key Insights
+## 📌 Project Impact
 
-- **West region** leads in revenue; **Central region** has the lowest profit margin
-- **Technology** category generates the highest revenue; **Office Supplies** has the best margin
-- Orders with **30%+ discount** consistently generate negative profit
-- **Standard Class** shipping accounts for the majority of orders but **Same Day** has the highest margin
+✔ Analyzed 5,000+ sales transactions across multiple regions and categories
+
+✔ Built an interactive management reporting solution for KPI monitoring
+
+✔ Automated business reporting using SQL, Python, and Power BI
+
+✔ Enabled data-driven decision making through visual analytics
+
+✔ Delivered actionable insights into sales, profitability, and customer behavior
+
+---
+
+## 📂 Dataset
+
+Dataset Used: Superstore Sales Dataset
+
+Source: Kaggle – Superstore Dataset
 
 ---
 
 ## 👩‍💻 Author
 
-**Deepika Telluri**  
-[LinkedIn](https://linkedin.com/in/telluri-deepika) · [GitHub](https://github.com/Tellurideepika/Deepika)
+**Deepika Telluri**
+
+Aspiring Data Analyst | Power BI Developer | SQL Analyst
+
+Skills: Power BI • SQL • Python • Excel • Data Visualization • Business Intelligence
